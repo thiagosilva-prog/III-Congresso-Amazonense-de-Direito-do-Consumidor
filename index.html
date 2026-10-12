@@ -80,11 +80,28 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 /* sobre */
 .about{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,96px);align-items:start}
 .about-txt p{margin-top:16px;color:var(--muted);max-width:54ch}
-.orgs{display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
-.orgs div{display:grid;gap:2px;align-content:start}
-.orgs span{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.orgs strong{font-size:.95rem;font-weight:600}
-.orgs small{font-size:.8rem;line-height:1.4;color:var(--muted)}
+.orgs{display:grid;grid-template-columns:1fr 1fr;gap:24px 32px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.org>span{display:block;margin-bottom:12px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.org-mark{display:flex;align-items:center;gap:14px}
+.org-mark img{height:56px;width:auto;mix-blend-mode:multiply}
+.org-mark p{margin:0;padding-left:14px;border-left:1px solid var(--line);font-size:.82rem;line-height:1.35}
+.org-mark strong{display:block;color:var(--navy);font-size:1rem}
+
+/* ficha do evento (faixa abaixo do hero) */
+.facts{padding-block:16px 0}
+.facts-row{display:grid;grid-template-columns:repeat(3,1fr);list-style:none;border-radius:var(--r)}
+.facts-row+.facts-row{margin-top:12px}
+.facts-top{background:var(--navy);color:#fff}
+.facts-bottom{border:1px solid var(--line);background:var(--paper)}
+.fact{position:relative;display:flex;align-items:center;gap:18px;padding:26px clamp(20px,3vw,36px)}
+.fact+.fact::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:2px;border-radius:2px;background:var(--rubi)}
+.fact .ico{width:44px;height:44px;stroke-width:1.4}
+.facts-top .ico{color:var(--gold-l)}
+.fact small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.fact strong{display:block;font-size:1.45rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.fact strong+span+strong{margin-top:8px}
+.fact span{display:block;font-size:.85rem;line-height:1.35;opacity:.8}
+.fact .sympla{font-size:2rem;letter-spacing:-.03em}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:44px 24px;text-align:center;padding-top:8px}
 .stats strong{display:block;font-size:clamp(2.5rem,4.6vw,3.4rem);font-weight:500;letter-spacing:-.03em;line-height:1}
 .stats strong small{font-size:.5em;letter-spacing:0}
@@ -189,6 +206,8 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 @media (max-width:960px){
   .top nav{display:none}
   .about{grid-template-columns:1fr}
+  .facts-row{grid-template-columns:1fr}
+  .fact+.fact::before{left:24px;right:24px;top:0;bottom:auto;width:auto;height:2px}
   .steps{grid-auto-columns:calc((100% - 20px) / 2.15)}
   .local{grid-template-columns:1fr 1fr;grid-template-rows:auto 220px 300px 56px;grid-template-areas:"txt txt" "info c" "p2 c" "btn btn"}
   .tk-grid{grid-template-columns:1fr 1fr}
@@ -250,6 +269,19 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
     </div>
   </section>
 
+  <section class="wrap facts" aria-label="Informações do evento">
+    <ul class="facts-row facts-top">
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><div><strong>10 horas</strong><span>de atividades complementares</span></div></li>
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><div><small>Inscrições pelo</small><strong class="sympla">Sympla</strong></div></li>
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1"/></svg><div><small>Investimento</small><strong>R$ 80,00</strong><span>Profissionais e público em geral</span><strong>R$ 40,00</strong><span>Estudantes de Direito</span></div></li>
+    </ul>
+    <ul class="facts-row facts-bottom">
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg><div><small>12 de novembro</small><strong>2026</strong><span>(quinta-feira)</span></div></li>
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><strong>Das 9h às 20h</strong></div></li>
+      <li class="fact"><svg class="ico" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>OAB Amazonas</strong><span>Auditório Rubi · 2º andar – Manaus/AM</span></div></li>
+    </ul>
+  </section>
+
   <section id="sobre" class="wrap about">
     <div class="about-txt">
       <span class="eyebrow">III edição</span>
@@ -257,13 +289,13 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
       <p>O Congresso Amazonense de Direito do Consumidor chega à sua terceira edição reunindo profissionais, estudantes de Direito e o público em geral para um dia inteiro de debates sobre a defesa do consumidor.</p>
       <p>Em 2026, o tema central é <strong>“Advocacia de massa e o sistema de justiça brasileiro”</strong>: os desafios das demandas em larga escala para a advocacia, para o Judiciário e para quem busca seus direitos.</p>
       <div class="orgs">
-        <div><span>Realização</span><strong>Comissão Permanente de Defesa do Consumidor</strong><small>OAB Amazonas</small></div>
-        <div><span>Apoio</span><strong>AADCAM</strong><small>Associação dos Advogados Defensores do Consumidor Amazonense</small></div>
+        <div class="org"><span>Realização</span><div class="org-mark"><img src="img/logo-oab-am.png" alt="OAB Amazonas" width="88" height="60"><p>Comissão Permanente de Defesa do Consumidor</p></div></div>
+        <div class="org"><span>Apoio</span><div class="org-mark"><img src="img/logo-aadcam.png" alt="Brasão da AADCAM" width="67" height="61"><p><strong>AADCAM</strong>Associação dos Advogados Defensores do Consumidor Amazonense</p></div></div>
       </div>
     </div>
     <div class="stats">
       <div><strong>12.11</strong><span>Quinta-feira, 12 de novembro de 2026</span></div>
-      <div><strong>11<small>h</small></strong><span>De programação, das 9h às 20h</span></div>
+      <div><strong>10<small>h</small></strong><span>De atividades complementares</span></div>
       <div><strong>III</strong><span>Edição do congresso</span></div>
       <div><strong>2<small>kg</small></strong><span>De alimento por inscrição, doados a uma instituição</span></div>
     </div>
