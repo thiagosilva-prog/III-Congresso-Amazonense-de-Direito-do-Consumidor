@@ -178,22 +178,22 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .map-info .ico{width:20px;height:20px;margin-top:1px;color:var(--rubi)}
 
 /* inscrições */
-.tk-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:16px}
-.ticket{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:34px 28px 28px;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ticket{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:22px;padding:34px 32px 32px;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
 .ticket::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--gold)}
-.ticket h3{font-size:1.05rem}
-.ticket>p{font-size:.9rem;color:var(--muted)}
-.ticket .price{display:flex;align-items:flex-start;gap:4px;font-size:3.6rem;font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--navy)}
+.tk-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 20px}
+.ticket h3{font-size:1.2rem}
+.tk-sub{margin-top:4px;font-size:.9rem;color:var(--muted)}
+.ticket .price{display:flex;align-items:flex-start;gap:4px;font-size:3.4rem;font-weight:600;letter-spacing:-.04em;line-height:1;white-space:nowrap;color:var(--navy)}
 .price small{margin-top:8px;font-size:1rem;font-weight:500;letter-spacing:0}
-.plus{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line);font-size:.9rem;font-weight:500}
-.plus .ico{color:var(--rubi)}
-.checkout{display:flex;flex-direction:column;gap:14px;padding:30px 28px;border-radius:var(--r);background:var(--navy);color:#fff}
-.checkout>p{font-size:.9rem;color:rgba(255,255,255,.75)}
-#sympla-slot{display:grid;place-items:center;min-height:205px;padding:8px;border-radius:16px;background:#fff;color:var(--navy);text-align:center}
-#sympla-slot>div{width:100%}
-.slot-msg{font-size:.95rem;color:var(--muted)}
-.slot-msg strong{display:block;font-size:1.1rem;color:var(--navy)}
-#sympla-link{font-size:.85rem;text-decoration:underline;text-underline-offset:3px}
+.tk-list{display:grid;gap:10px;padding-top:20px;border-top:1px dashed var(--line);list-style:none;font-size:.92rem}
+.tk-list li{display:flex;align-items:center;gap:10px}
+.tk-list .ico{width:18px;height:18px;color:var(--rubi)}
+.btn-buy{width:100%;min-height:58px;margin-top:auto;font-size:1rem}
+.btn-buy .ico{width:18px;height:18px}
+.buy-note{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:20px;font-size:.88rem;color:var(--muted)}
+.buy-note span{display:inline-flex;align-items:center;gap:8px}
+.buy-note .ico{width:18px;height:18px;color:var(--navy)}
 .solid{display:flex;align-items:center;gap:20px;margin-top:16px;padding:24px 28px;border-radius:var(--r);background:var(--rubi);color:#fff}
 .solid .ico{width:40px;height:40px}
 .solid p{font-size:.95rem;color:rgba(255,255,255,.9)}
@@ -220,8 +220,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   .local-txt::before,.local-txt::after{display:none}
   .map-panel{grid-row:2/-1}
   .map-card{width:340px;max-height:calc(100% - 32px)}
-  .tk-grid{grid-template-columns:1fr 1fr}
-  .checkout{grid-column:1/-1}
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-grid>div:first-child{grid-column:1/-1}
 }
@@ -445,28 +443,39 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
       <div>
         <span class="eyebrow">Inscrições</span>
         <h2>Garanta sua vaga</h2>
-        <p>Valores por participante, mais 2 kg de alimento não perecível. Pagamento e emissão do ingresso pelo Sympla.</p>
+        <p>Escolha seu ingresso e finalize a inscrição no Sympla. Valores por participante, acrescidos da taxa de serviço do Sympla (10%).</p>
       </div>
     </div>
     <div class="tk-grid">
       <article class="ticket">
-        <h3>Profissionais e público em geral</h3>
-        <p class="price"><small>R$</small>80<small>,00</small></p>
-        <p>Acesso a toda a programação do congresso.</p>
-        <p class="plus"><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>2 kg de alimento não perecível</p>
+        <div class="tk-head">
+          <div><h3>Profissionais e público em geral</h3><p class="tk-sub">Advogados(as) e demais interessados</p></div>
+          <p class="price"><small>R$</small>80<small>,00</small></p>
+        </div>
+        <ul class="tk-list">
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Acesso a toda a programação</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>10 horas de atividades complementares</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Levar 2 kg de alimento não perecível</li>
+        </ul>
+        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor/3615672" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
       </article>
       <article class="ticket">
-        <h3>Estudantes de Direito</h3>
-        <p class="price"><small>R$</small>40<small>,00</small></p>
-        <p>Para estudantes do curso de Direito.</p>
-        <p class="plus"><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>2 kg de alimento não perecível</p>
+        <div class="tk-head">
+          <div><h3>Estudantes de Direito</h3><p class="tk-sub">Graduandos(as) do curso de Direito</p></div>
+          <p class="price"><small>R$</small>40<small>,00</small></p>
+        </div>
+        <ul class="tk-list">
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Acesso a toda a programação</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>10 horas de atividades complementares</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Levar 2 kg de alimento não perecível</li>
+        </ul>
+        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor/3615672" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
       </article>
-      <div class="checkout">
-        <h3>Inscrição online</h3>
-        <p>Escolha o ingresso e preencha seus dados no checkout do Sympla.</p>
-        <div id="sympla-slot"><p class="slot-msg"><strong>Inscrições abrem em breve</strong>As vendas acontecerão aqui, pelo Sympla.</p></div>
-        <a id="sympla-link" href="#" target="_blank" rel="noopener" hidden>Abrir página do evento no Sympla ↗</a>
-      </div>
+    </div>
+    <div class="buy-note">
+      <span><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pagamento seguro pelo Sympla</span>
+      <span><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Ingresso enviado por e-mail</span>
+      <span><svg class="ico" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>225 vagas no Auditório Rubi</span>
     </div>
     <div class="solid">
       <svg class="ico" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -499,20 +508,14 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 </footer>
 
 <script>
-// Sympla: cole aqui o link do evento quando ele for criado
-// ex.: 'https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor/1234567'
-const SYMPLA_URL = '';
-
-const eventId = (SYMPLA_URL.match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
-if (eventId) {
-  document.getElementById('sympla-slot').innerHTML = `<div id="sympla-widget-${eventId}" height="auto"></div>`;
-  const s = document.createElement('script');
-  s.src = `https://www.sympla.com.br/js/sympla.widget-pt.js/${eventId}`;
-  document.body.append(s);
-  const link = document.getElementById('sympla-link');
-  link.href = SYMPLA_URL;
-  link.hidden = false;
-}
+// Botões "Comprar ingresso" levam ao evento no Sympla (link no href dos [data-sympla]).
+// Os UTMs da landing seguem junto, para a origem da venda aparecer no GA4/Pixel do Sympla.
+const utm = [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_'));
+if (utm.length) document.querySelectorAll('[data-sympla]').forEach(a => {
+  const u = new URL(a.href);
+  utm.forEach(([k, v]) => u.searchParams.set(k, v));
+  a.href = u;
+});
 
 // "Ver no mapa": abre/fecha o painel; o iframe do Google Maps só carrega no primeiro clique
 const mapBtn = document.getElementById('map-toggle');
@@ -535,7 +538,7 @@ mapBtn.addEventListener('click', () => {
 // revelação cinematográfica ao rolar: cada bloco entra quando aparece na tela, em cascata entre irmãos
 const reveal = [
   ['rv-title', 'main h2'],
-  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .soon p, .facts-row, .stats > div, .step, .ticket, .checkout, .foot-grid > div'],
+  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .soon p, .facts-row, .stats > div, .step, .ticket, .buy-note, .foot-grid > div'],
   ['rv-clip', '.local figure'],
   ['rv-wipe', '.solid'],
 ];
