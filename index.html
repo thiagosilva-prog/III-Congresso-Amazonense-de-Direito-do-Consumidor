@@ -151,6 +151,26 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .soon::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--gold)}
 .soon .eyebrow{color:var(--gold-l)}
 .soon p{margin-top:12px;max-width:52ch;color:rgba(255,255,255,.75)}
+.soon h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+
+/* palestrantes */
+.speakers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.speaker{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
+.speaker img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;background:var(--navy)}
+.speaker-body{padding:24px 26px 28px}
+/* lista de palestras (agenda) */
+.talks{margin-bottom:16px;padding:clamp(24px,4vw,40px);border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
+.talk-list{list-style:none;margin-top:6px}
+.talk{display:grid;grid-template-columns:48px 1fr 180px;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.talk:last-child{padding-bottom:0}
+.talk-n{font-size:.85rem;font-weight:600;color:var(--rubi)}
+.talk-t{max-width:56ch;font-size:clamp(1.05rem,1.6vw,1.2rem);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--navy)}
+.talk-by{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:500;color:var(--navy);white-space:nowrap}
+.talk-by img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 15%}
+.talk-tbd .talk-t{font-weight:500;color:var(--muted)}
+.speaker-role{display:block;margin-top:6px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--rubi)}
+.speaker h3{font-size:1.25rem}
+.speaker p{margin-top:10px;font-size:.875rem;line-height:1.55;color:var(--muted)}
 #programacao{padding-top:0}
 
 /* local (bento) */
@@ -165,7 +185,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .local figure{position:relative;min-height:220px;--shade:linear-gradient(to top,rgba(11,29,50,.6),transparent 45%)}
 .local figcaption{position:absolute;right:20px;bottom:16px;color:#fff;font-size:.85rem;font-weight:500;text-decoration:underline;text-underline-offset:4px}
 .ph-p2{grid-area:p2;--pos:50% 45%}
-.ph-p3{--pos:90% 68%}
 .btn-map{width:100%;margin-top:28px}
 .gal{grid-area:gal;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .gal figure{height:460px}
@@ -244,6 +263,9 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   .local-txt::before,.local-txt::after{display:none}
   .map-panel{grid-row:2/-1}
   .map-card{width:340px;max-height:calc(100% - 32px)}
+  .speakers{grid-template-columns:1fr}
+  .speaker{display:grid;grid-template-columns:minmax(200px,36%) 1fr;min-height:300px}
+  .speaker img{height:0;min-height:100%;aspect-ratio:auto}
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-grid>div:first-child{grid-column:1/-1}
 }
@@ -266,6 +288,11 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   .map-card .photo,.map-info{display:none}
   .map-actions{margin-bottom:0;padding-bottom:0;border:0}
   .tk-grid{grid-template-columns:1fr}
+  .speaker{display:flex;min-height:0}
+  .talk{grid-template-columns:28px 1fr;align-items:start;gap:12px}
+  .talk-n{padding-top:3px}
+  .talk-by{grid-column:2}
+  .speaker img{height:auto;min-height:0;aspect-ratio:4/5}
   .solid{flex-direction:column;align-items:flex-start}
   .foot-grid{grid-template-columns:1fr}
 }
@@ -333,7 +360,7 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
     <nav aria-label="Seções">
       <a href="#sobre">Sobre</a>
       <a href="#como">Como se inscrever</a>
-      <a href="#programacao">Programação</a>
+      <a href="#programacao">Palestrantes</a>
       <a href="#local">Local</a>
       <a href="#inscricao">Ingressos</a>
     </nav>
@@ -344,7 +371,7 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 <main>
   <section class="hero wrap">
     <div class="hero-card">
-      <img class="hero-img" src="img/auditorio-mesa.jpg" alt="" fetchpriority="high">
+      <img class="hero-img" src="img/oab4.webp" alt="" fetchpriority="high">
       <div class="hero-txt">
         <span class="chip">12.11.2026 · 9h às 20h · OAB/AM</span>
         <h1><span class="ln">III Congresso</span> <span class="ln">Amazonense de</span> <span class="ln gold">Direito do Consumidor</span></h1>
@@ -417,11 +444,60 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   </section>
 
   <section id="programacao" class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Programação</span><h2>Palestrantes confirmados</h2></div>
+    </div>
+    <div class="speakers">
+      <article class="speaker">
+        <img src="img/palestrante-walter-faiad.webp" alt="Dr. Walter José Faiad Moura" width="720" height="1135" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Walter José Faiad Moura</h3>
+          <span class="speaker-role">Presidente da Comissão Especial de Defesa do Consumidor do CFOAB</span>
+          <p>Advogado e Mestre em Direito pelo ICPD/UniCEUB-Brasília, professor licenciado de Direito Civil, Direito Administrativo e Direito do Consumidor. Ganhador do Prêmio Innovare 2018 na categoria Advocacia.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-renato-porto.webp" alt="Dr. Renato Porto" width="720" height="1079" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Renato Porto</h3>
+          <span class="speaker-role">Doutor e Mestre em Direito · Professor da EMERJ</span>
+          <p>Doutor e Mestre em Direito pela UNESA, especialista em Direito Civil, Processual Civil, do Consumidor e Responsabilidade Civil. Professor da EMERJ, FEMPERJ, AMPERJ e FESUDEPERJ e sócio do Porto Amaral Advogados.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-carla-simas.webp" alt="Dra. Carla Simas" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dra. Carla Simas</h3>
+          <span class="speaker-role">Presidente da Comissão de Apoio à Advocacia em Demandas de Massa da OAB/BA</span>
+          <p>Advogada, membro da Comissão Especial de Defesa do Consumidor e da Comissão Nacional de Direito Migratório do CFOAB. Mestranda pelo IDP/Brasília, atua em Direito do Consumidor e Direito da Saúde.</p>
+        </div>
+      </article>
+    </div>
+    <div class="talks">
+      <h3 class="eyebrow">Palestras</h3>
+      <ol class="talk-list">
+        <li class="talk talk-tbd">
+          <span class="talk-n">01</span>
+          <p class="talk-t">Tema em breve</p>
+          <span class="talk-by"><img src="img/palestrante-walter-faiad.webp" alt="" width="44" height="44" loading="lazy">Dr. Walter José</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">02</span>
+          <p class="talk-t">Inteligência Artificial na Advocacia: Estratégias Éticas e Inovadoras para Prospecção e Captação de Clientes</p>
+          <span class="talk-by"><img src="img/palestrante-renato-porto.webp" alt="" width="44" height="44" loading="lazy">Dr. Renato Porto</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">03</span>
+          <p class="talk-t">A Criminalização da Advocacia de Massa: Entre o Combate à Litigância Abusiva e a Violação das Prerrogativas Profissionais</p>
+          <span class="talk-by"><img src="img/palestrante-carla-simas.webp" alt="" width="44" height="44" loading="lazy">Dra. Carla Simas</span>
+        </li>
+      </ol>
+    </div>
     <div class="soon">
       <div>
-        <span class="eyebrow">Programação</span>
-        <h2>Palestrantes e grade em breve</h2>
-        <p>A programação completa será divulgada aqui. Reserve a data: 12 de novembro, das 9h às 20h, no Auditório Rubi.</p>
+        <span class="eyebrow">Grade completa</span>
+        <h3>Horários em breve</h3>
+        <p>A grade com o horário de cada palestra será divulgada aqui. Reserve a data: 12 de novembro, das 9h às 20h, no Auditório Rubi.</p>
       </div>
       <a class="btn btn-light shine" href="#inscricao">Garantir minha vaga</a>
     </div>
@@ -437,8 +513,8 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
     </div>
     <figure class="photo ph-p2" style="--img:url(img/auditorio-oab1.webp)"><figcaption>Vista do palco</figcaption></figure>
     <div class="gal">
-      <figure class="photo ph-c" style="--img:url(img/auditorio-oab4.webp)"><figcaption>Auditório Rubi</figcaption></figure>
-      <figure class="photo ph-p3" style="--img:url(img/auditorio-oab2.webp)"><figcaption>Plateia</figcaption></figure>
+      <figure class="photo ph-c" style="--img:url(img/oab2.webp);--pos:0% 50%"><figcaption>Auditório Rubi</figcaption></figure>
+      <figure class="photo" style="--img:url(img/oab1.webp);--pos:30% 50%"><figcaption>Tribuna</figcaption></figure>
     </div>
     <div class="map-panel" id="mapa" inert>
           <iframe title="Mapa da sede da OAB Amazonas" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-src="https://www.google.com/maps?q=OAB+Seccional+Amazonas,+Av.+Umberto+Calderaro,+2000+-+Adrian%C3%B3polis,+Manaus+-+AM&amp;z=16&amp;output=embed"></iframe>
@@ -595,7 +671,7 @@ mapBtn.addEventListener('click', () => {
 // revelação cinematográfica ao rolar: cada bloco entra quando aparece na tela, em cascata entre irmãos
 const reveal = [
   ['rv-title', 'main h2'],
-  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .soon p, .facts-row, .stats > div, .step, .ticket, .buy-note, .foot-grid > div'],
+  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .soon p, .facts-row, .stats > div, .step, .speaker, .talk, .ticket, .buy-note, .foot-grid > div'],
   ['rv-clip', '.local figure'],
   ['rv-wipe', '.solid'],
 ];
