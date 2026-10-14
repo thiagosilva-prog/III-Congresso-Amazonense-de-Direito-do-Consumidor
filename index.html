@@ -13,6 +13,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2111361703083111');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2111361703083111&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 :root{
   --navy:#102945;--navy-d:#0b1d32;--navy-l:#1d4068;
@@ -198,6 +215,13 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .solid .ico{width:40px;height:40px}
 .solid p{font-size:.95rem;color:rgba(255,255,255,.9)}
 .solid strong{color:#fff}
+/* aviso sobre o site enquanto a janela do Sympla está aberta */
+.buy-dlg{max-width:min(420px,calc(100% - 32px));margin:auto;padding:36px 32px 32px;border:0;border-radius:var(--r);background:var(--paper);color:var(--navy);text-align:center;box-shadow:0 24px 60px rgba(11,29,50,.35)}
+.buy-dlg::backdrop{background:rgba(11,29,50,.72);backdrop-filter:blur(6px)}
+.buy-dlg img{margin:0 auto 18px}
+.buy-dlg h3{font-size:1.4rem}
+.buy-dlg p{margin:10px 0 24px;font-size:.95rem;color:var(--muted)}
+.buy-dlg .btn{width:100%}
 
 /* rodapé */
 .foot{padding:64px 0 28px;background:var(--navy);color:rgba(255,255,255,.75)}
@@ -507,6 +531,13 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   </div>
 </footer>
 
+<dialog class="buy-dlg" id="buy-dlg" aria-labelledby="buy-dlg-t">
+  <img src="assets/favicon.svg" alt="" width="44" height="44">
+  <h3 id="buy-dlg-t"></h3>
+  <p></p>
+  <button class="btn" type="button"></button>
+</dialog>
+
 <script>
 // Botões "Comprar ingresso" levam ao evento no Sympla (link no href dos [data-sympla]).
 // Os UTMs da landing seguem junto, para a origem da venda aparecer no GA4/Pixel do Sympla.
@@ -516,6 +547,32 @@ if (utm.length) document.querySelectorAll('[data-sympla]').forEach(a => {
   utm.forEach(([k, v]) => u.searchParams.set(k, v));
   a.href = u;
 });
+
+// No computador, o Sympla abre numa janela centralizada sobre o site, que fica escurecido atrás.
+// Celular/tablet (toque) ou pop-up bloqueado: segue o link normal, em nova aba.
+const dlg = document.getElementById('buy-dlg');
+const [dlgTitle, dlgText, dlgBtn] = dlg.querySelectorAll('h3, p, button');
+let pop, watch;
+const showDlg = (title, text, btn) => {
+  dlgTitle.textContent = title; dlgText.textContent = text; dlgBtn.textContent = btn;
+  if (!dlg.open) dlg.showModal();
+};
+dlgBtn.addEventListener('click', () => pop && !pop.closed ? pop.focus() : dlg.close());
+document.querySelectorAll('[data-sympla]').forEach(a => a.addEventListener('click', e => {
+  if (matchMedia('(pointer: coarse)').matches) return;
+  const w = 480, h = Math.min(820, screen.availHeight - 60);
+  pop = open(a.href, 'sympla', `popup,width=${w},height=${h},left=${screenX + (outerWidth - w) / 2},top=${screenY + (outerHeight - h) / 2}`);
+  if (!pop) return;
+  e.preventDefault();
+  showDlg('Finalize no Sympla', 'Sua inscrição abriu numa janela segura do Sympla. Escolha o ingresso, preencha seus dados e faça o pagamento por lá.', 'Mostrar janela do Sympla');
+  pop.focus();
+  clearInterval(watch);
+  watch = setInterval(() => {
+    if (!pop.closed) return;
+    clearInterval(watch);
+    showDlg('Inscrição concluída?', 'Se você finalizou o pagamento, o ingresso chega no seu e-mail (confira também o spam). Se desistiu, é só clicar em "Comprar ingresso" de novo.', 'Voltar ao site');
+  }, 500);
+}));
 
 // "Ver no mapa": abre/fecha o painel; o iframe do Google Maps só carrega no primeiro clique
 const mapBtn = document.getElementById('map-toggle');
@@ -564,6 +621,25 @@ arrows.addEventListener('click', e => {
 const syncArrows = () => { arrows.hidden = track.scrollWidth <= track.clientWidth + 1; };
 addEventListener('resize', syncArrows);
 syncArrows();
+
+// Meta Pixel: eventos da página (o PageView sai do snippet no <head>; a compra é rastreada pelo Sympla)
+new IntersectionObserver(([e], io) => {
+  if (e.isIntersecting) { fbq('track', 'ViewContent', { content_name: 'Ingressos' }); io.disconnect(); }
+}, { threshold: .3 }).observe(document.getElementById('inscricao'));
+document.addEventListener('click', e => {
+  const el = e.target.closest('a, button');
+  if (!el) return;
+  if (el.matches('[data-sympla]')) {
+    const card = el.closest('.ticket');
+    fbq('track', 'InitiateCheckout', {
+      content_name: card.querySelector('h3').textContent,
+      value: card.querySelector('.price').textContent.replace(/\D/g, '') / 100, // "R$80,00" -> 80
+      currency: 'BRL',
+    });
+  } else if (el.matches('a[href="#inscricao"]')) fbq('trackCustom', 'IrParaInscricao', { origem: el.textContent.trim() });
+  else if (el.matches('.map-act')) fbq('track', 'FindLocation', { content_name: el.textContent.trim() });
+  else if (el.id === 'map-toggle' && el.getAttribute('aria-expanded') === 'true') fbq('trackCustom', 'VerMapa');
+});
 </script>
 </body>
 </html>
