@@ -154,10 +154,11 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .soon h3{font-size:clamp(1.5rem,2.6vw,2rem)}
 
 /* palestrantes */
-.speakers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
-.speaker{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
+/* subgrid: foto, nome, cargo e bio de cada card ficam nas mesmas linhas da grade, alinhados entre si */
+.speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:0 16px;margin-bottom:16px}
+.speaker{display:grid;grid-row:span 4;grid-template-rows:subgrid;gap:0;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
 .speaker img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;background:var(--navy)}
-.speaker-body{padding:24px 26px 28px}
+.speaker-body{grid-row:span 3;display:grid;grid-template-rows:subgrid;gap:0;align-content:start;padding:22px 22px 26px}
 /* lista de palestras (agenda) */
 .talks{margin-bottom:16px;padding:clamp(24px,4vw,40px);border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
 .talk-list{list-style:none;margin-top:6px}
@@ -167,7 +168,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .talk-t{max-width:56ch;font-size:clamp(1.05rem,1.6vw,1.2rem);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--navy)}
 .talk-by{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:500;color:var(--navy);white-space:nowrap}
 .talk-by img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 15%}
-.talk-tbd .talk-t{font-weight:500;color:var(--muted)}
 .speaker-role{display:block;margin-top:6px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--rubi)}
 .speaker h3{font-size:1.25rem}
 .speaker p{margin-top:10px;font-size:.875rem;line-height:1.55;color:var(--muted)}
@@ -245,6 +245,12 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .foot p{font-size:.9rem;line-height:1.6}
 .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem}
 
+@media (max-width:1100px){
+  .speakers{grid-template-columns:1fr;gap:16px}
+  .speaker{grid-row:auto;grid-template-rows:none;grid-template-columns:minmax(200px,36%) 1fr;min-height:300px}
+  .speaker img{height:0;min-height:100%;aspect-ratio:auto}
+  .speaker-body{grid-row:auto;display:block;padding:24px 26px 28px}
+}
 @media (max-width:960px){
   .top nav{display:none}
   .about{grid-template-columns:1fr}
@@ -256,9 +262,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   .local-txt::before,.local-txt::after{display:none}
   .map-panel{grid-row:2/-1}
   .map-card{width:340px;max-height:calc(100% - 32px)}
-  .speakers{grid-template-columns:1fr}
-  .speaker{display:grid;grid-template-columns:minmax(200px,36%) 1fr;min-height:300px}
-  .speaker img{height:0;min-height:100%;aspect-ratio:auto}
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-grid>div:first-child{grid-column:1/-1}
 }
@@ -281,7 +284,7 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   .map-card .photo,.map-info{display:none}
   .map-actions{margin-bottom:0;padding-bottom:0;border:0}
   .tk-grid{grid-template-columns:1fr}
-  .speaker{display:flex;min-height:0}
+  .speaker{display:flex;flex-direction:column;min-height:0}
   .talk{grid-template-columns:28px 1fr;align-items:start;gap:12px}
   .talk-n{padding-top:3px}
   .talk-by{grid-column:2}
@@ -465,13 +468,21 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <p>Advogada, membro da Comissão Especial de Defesa do Consumidor e da Comissão Nacional de Direito Migratório do CFOAB. Mestranda pelo IDP/Brasília, atua em Direito do Consumidor e Direito da Saúde.</p>
         </div>
       </article>
+      <article class="speaker">
+        <img src="img/palestrante-frank-cesar.webp" alt="Prof. Dr. Frank Figueiredo Cesar" width="720" height="989" loading="lazy">
+        <div class="speaker-body">
+          <h3>Prof. Dr. Frank Figueiredo Cesar</h3>
+          <span class="speaker-role">Doutorando em Direito Civil · Professor da ESA/AM</span>
+          <p>Advogado e doutorando em Direito Civil pela Universidade de Buenos Aires. Membro honorário do IBDPC e membro da ALCAMA, é professor convidado da ESA/AM, com mais de 22 anos no magistério.</p>
+        </div>
+      </article>
     </div>
     <div class="talks">
       <h3 class="eyebrow">Palestras</h3>
       <ol class="talk-list">
-        <li class="talk talk-tbd">
+        <li class="talk">
           <span class="talk-n">01</span>
-          <p class="talk-t">Tema em breve</p>
+          <p class="talk-t">O Acesso à Justiça: Os Dois Lados da Litigiosidade e os Abusos Processuais dos Grandes Litigantes</p>
           <span class="talk-by"><img src="img/palestrante-walter-faiad.webp" alt="" width="44" height="44" loading="lazy">Dr. Walter José</span>
         </li>
         <li class="talk">
@@ -483,6 +494,11 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <span class="talk-n">03</span>
           <p class="talk-t">A Criminalização da Advocacia de Massa: Entre o Combate à Litigância Abusiva e a Violação das Prerrogativas Profissionais</p>
           <span class="talk-by"><img src="img/palestrante-carla-simas.webp" alt="" width="44" height="44" loading="lazy">Dra. Carla Simas</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">04</span>
+          <p class="talk-t">O Uso Racional, Prático e Ético da Inteligência Artificial na Advocacia</p>
+          <span class="talk-by"><img src="img/palestrante-frank-cesar.webp" alt="" width="44" height="44" loading="lazy">Dr. Frank Cesar</span>
         </li>
       </ol>
     </div>
