@@ -234,13 +234,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .solid .ico{width:40px;height:40px}
 .solid p{font-size:.95rem;color:rgba(255,255,255,.9)}
 .solid strong{color:#fff}
-/* aviso sobre o site enquanto a janela do Sympla está aberta */
-.buy-dlg{max-width:min(420px,calc(100% - 32px));margin:auto;padding:36px 32px 32px;border:0;border-radius:var(--r);background:var(--paper);color:var(--navy);text-align:center;box-shadow:0 24px 60px rgba(11,29,50,.35)}
-.buy-dlg::backdrop{background:rgba(11,29,50,.72);backdrop-filter:blur(6px)}
-.buy-dlg img{margin:0 auto 18px}
-.buy-dlg h3{font-size:1.4rem}
-.buy-dlg p{margin:10px 0 24px;font-size:.95rem;color:var(--muted)}
-.buy-dlg .btn{width:100%}
 
 /* rodapé */
 .foot{padding:64px 0 28px;background:var(--navy);color:rgba(255,255,255,.75)}
@@ -557,7 +550,7 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>10 horas de atividades complementares</li>
           <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Levar 2 kg de alimento não perecível</li>
         </ul>
-        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor/3615672" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor-da-oab-am/3620450" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
       </article>
       <article class="ticket">
         <div class="tk-head">
@@ -569,7 +562,7 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <li><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>10 horas de atividades complementares</li>
           <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Levar 2 kg de alimento não perecível</li>
         </ul>
-        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor/3615672" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        <a class="btn btn-buy shine" data-sympla href="https://www.sympla.com.br/evento/iii-congresso-amazonense-de-direito-do-consumidor-da-oab-am/3620450" target="_blank" rel="noopener">Comprar ingresso<svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
       </article>
     </div>
     <div class="buy-note">
@@ -607,13 +600,6 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
   </div>
 </footer>
 
-<dialog class="buy-dlg" id="buy-dlg" aria-labelledby="buy-dlg-t">
-  <img src="assets/favicon.svg" alt="" width="44" height="44">
-  <h3 id="buy-dlg-t"></h3>
-  <p></p>
-  <button class="btn" type="button"></button>
-</dialog>
-
 <script>
 // Botões "Comprar ingresso" levam ao evento no Sympla (link no href dos [data-sympla]).
 // Os UTMs da landing seguem junto, para a origem da venda aparecer no GA4/Pixel do Sympla.
@@ -623,32 +609,6 @@ if (utm.length) document.querySelectorAll('[data-sympla]').forEach(a => {
   utm.forEach(([k, v]) => u.searchParams.set(k, v));
   a.href = u;
 });
-
-// No computador, o Sympla abre numa janela centralizada sobre o site, que fica escurecido atrás.
-// Celular/tablet (toque) ou pop-up bloqueado: segue o link normal, em nova aba.
-const dlg = document.getElementById('buy-dlg');
-const [dlgTitle, dlgText, dlgBtn] = dlg.querySelectorAll('h3, p, button');
-let pop, watch;
-const showDlg = (title, text, btn) => {
-  dlgTitle.textContent = title; dlgText.textContent = text; dlgBtn.textContent = btn;
-  if (!dlg.open) dlg.showModal();
-};
-dlgBtn.addEventListener('click', () => pop && !pop.closed ? pop.focus() : dlg.close());
-document.querySelectorAll('[data-sympla]').forEach(a => a.addEventListener('click', e => {
-  if (matchMedia('(pointer: coarse)').matches) return;
-  const w = 480, h = Math.min(820, screen.availHeight - 60);
-  pop = open(a.href, 'sympla', `popup,width=${w},height=${h},left=${screenX + (outerWidth - w) / 2},top=${screenY + (outerHeight - h) / 2}`);
-  if (!pop) return;
-  e.preventDefault();
-  showDlg('Finalize no Sympla', 'Sua inscrição abriu numa janela segura do Sympla. Escolha o ingresso, preencha seus dados e faça o pagamento por lá.', 'Mostrar janela do Sympla');
-  pop.focus();
-  clearInterval(watch);
-  watch = setInterval(() => {
-    if (!pop.closed) return;
-    clearInterval(watch);
-    showDlg('Inscrição concluída?', 'Se você finalizou o pagamento, o ingresso chega no seu e-mail (confira também o spam). Se desistiu, é só clicar em "Comprar ingresso" de novo.', 'Voltar ao site');
-  }, 500);
-}));
 
 // "Ver no mapa": abre/fecha o painel; o iframe do Google Maps só carrega no primeiro clique
 const mapBtn = document.getElementById('map-toggle');
