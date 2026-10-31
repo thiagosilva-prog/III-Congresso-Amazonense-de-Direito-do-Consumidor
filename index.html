@@ -155,19 +155,23 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 
 /* palestrantes */
 /* subgrid: foto, nome, cargo e bio de cada card ficam nas mesmas linhas da grade, alinhados entre si */
-.speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:0 16px;margin-bottom:16px}
+.speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px}
 .speaker{display:grid;grid-row:span 4;grid-template-rows:subgrid;gap:0;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
 .speaker img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;background:var(--navy)}
 .speaker-body{grid-row:span 3;display:grid;grid-template-rows:subgrid;gap:0;align-content:start;padding:22px 22px 26px}
 /* lista de palestras (agenda) */
 .talks{margin-bottom:16px;padding:clamp(24px,4vw,40px);border-radius:var(--r);border:1px solid var(--line);background:var(--paper)}
 .talk-list{list-style:none;margin-top:6px}
-.talk{display:grid;grid-template-columns:48px 1fr 180px;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.talk{display:grid;grid-template-columns:48px 1fr 210px;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
 .talk:last-child{padding-bottom:0}
 .talk-n{font-size:.85rem;font-weight:600;color:var(--rubi)}
 .talk-t{max-width:56ch;font-size:clamp(1.05rem,1.6vw,1.2rem);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--navy)}
 .talk-by{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:500;color:var(--navy);white-space:nowrap}
 .talk-by img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 15%}
+.talk-tag{display:block;margin-bottom:4px;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rubi)}
+.talk-panel .talk-by{flex-direction:column;align-items:flex-start;gap:8px;font-size:.82rem;white-space:normal}
+.talk-faces{display:flex}
+.talk-faces img+img{margin-left:-12px;box-shadow:0 0 0 2px var(--paper)}
 .speaker-role{display:block;margin-top:6px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--rubi)}
 .speaker h3{font-size:1.25rem}
 .speaker p{margin-top:10px;font-size:.875rem;line-height:1.55;color:var(--muted)}
@@ -476,6 +480,70 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <p>Advogado e doutorando em Direito Civil pela Universidade de Buenos Aires. Membro honorário do IBDPC e membro da ALCAMA, é professor convidado da ESA/AM, com mais de 22 anos no magistério.</p>
         </div>
       </article>
+      <article class="speaker">
+        <img src="img/palestrante-igor-campagnolli.webp" alt="Dr. Igor de Carvalho Leal Campagnolli" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Igor de Carvalho Leal Campagnolli</h3>
+          <span class="speaker-role">Juiz do Tribunal de Justiça do Amazonas</span>
+          <p>Juiz Corregedor Auxiliar e encarregado de dados do TJAM, membro do Comitê de Governança de Inteligência Artificial do tribunal. Mestre em Direito pela USP, doutorando pela UnB e certificado em IA Generativa pelo MIT.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-reginaldo-oliveira.webp" alt="Reginaldo Souza de Oliveira" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Reginaldo Souza de Oliveira</h3>
+          <span class="speaker-role">Presidente da Comissão Permanente de Defesa do Consumidor da OAB/AM</span>
+          <p>Advogado consumerista e trabalhista, formado em Direito e Ciências Contábeis e pós-graduado pela UFAM. Conselheiro e Procurador Adjunto de Prerrogativas da OAB/AM, membro do CONDECOM e do COMDECON.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-alvaro-regis.webp" alt="Dr. Álvaro Régis de Menezes Júnior" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Álvaro Régis de Menezes Júnior</h3>
+          <span class="speaker-role">Presidente da Comissão de Direito Previdenciário da OAB/AM</span>
+          <p>Advogado, professor universitário, bacharel em Economia e autor de obras jurídicas. Especialista em Previdência, Tributário e Securitário, diretor da AAPREVAM e conselheiro seccional da OAB/AM.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-daniel-benvenutti.webp" alt="Dr. Daniel Benvenutti" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Daniel Benvenutti</h3>
+          <span class="speaker-role">Doutor em Função Social do Direito · FADISP/SP</span>
+          <p>Professor, especialista em sustentação oral, Direito do Consumidor e IRDRs. Membro e consultor da AADCAM, palestrante e pesquisador em Processo Civil, Defesa do Consumidor e Função Social do Direito.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-almir-anselmo.webp" alt="Dr. Almir Albuquerque dos Santos Anselmo" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dr. Almir Albuquerque dos Santos Anselmo</h3>
+          <span class="speaker-role">Conselheiro Estadual da OAB/AM</span>
+          <p>Presidente da Comissão de Acompanhamento de IRDRs no TJ-AM e ex-membro da Comissão Nacional de Direito Bancário do CFOAB. Professor, consultor e especialista em sustentações orais em tribunais.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-roberta-veras.webp" alt="Dra. Roberta Veras Antonio" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dra. Roberta Veras Antonio</h3>
+          <span class="speaker-role">Educadora financeira · Mestre em Administração</span>
+          <p>Contadora, palestrante, escritora e consultora empresarial, com 39 anos de experiência nas áreas financeira e educacional. Criadora do Método Despertar Financeiro e do MIEF – Modelo Integrado de Educação Financeira.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-roberta-marques.webp" alt="Dra. Roberta Marques" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dra. Roberta Marques</h3>
+          <span class="speaker-role">Presidente da Comissão de Estudos de Direito à Saúde Mental da OAB/AM</span>
+          <p>Advogada e psicóloga, pós-graduada em Saúde Mental e mestranda em Saúde da Família pela UEA. Atua na interface entre Direito e Saúde, com foco na proteção jurídica da saúde mental.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-rosely-fernandes.webp" alt="Dra. Rosely Fernandes" width="720" height="900" loading="lazy">
+        <div class="speaker-body">
+          <h3>Dra. Rosely Fernandes</h3>
+          <span class="speaker-role">Ex-presidente da ProconsBrasil</span>
+          <p>Advogada, doutora em Direito Constitucional e pós-graduada em Processo Civil e Civil pela FGV. Consultora em Relações de Consumo, Políticas Públicas, Mediação de Conflitos, Regulação e Estratégia Corporativa.</p>
+        </div>
+      </article>
     </div>
     <div class="talks">
       <h3 class="eyebrow">Palestras</h3>
@@ -499,6 +567,36 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <span class="talk-n">04</span>
           <p class="talk-t">O Uso Racional, Prático e Ético da Inteligência Artificial na Advocacia</p>
           <span class="talk-by"><img src="img/palestrante-frank-cesar.webp" alt="" width="44" height="44" loading="lazy">Dr. Frank Cesar</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">05</span>
+          <p class="talk-t">O Uso Responsável da Inteligência Artificial: Ética, Inovação e Desafios Jurídicos</p>
+          <span class="talk-by"><img src="img/palestrante-igor-campagnolli.webp" alt="" width="44" height="44" loading="lazy">Dr. Igor Campagnolli</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">06</span>
+          <p class="talk-t">Criminalização da Advocacia em Demandas de Massa x Violação das Prerrogativas dos Advogados</p>
+          <span class="talk-by"><img src="img/palestrante-reginaldo-oliveira.webp" alt="" width="44" height="44" loading="lazy">Reginaldo Oliveira</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">07</span>
+          <p class="talk-t">Responsabilidade Civil Profissional da Advocacia na Era da Decisão Automatizada e LGPD</p>
+          <span class="talk-by"><img src="img/palestrante-alvaro-regis.webp" alt="" width="44" height="44" loading="lazy">Dr. Álvaro Régis</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">08</span>
+          <p class="talk-t">A Generalização da Suspeita de Litigância Abusiva e a Indevida Condenação de Advogados como se Fossem Partes Processuais</p>
+          <span class="talk-by"><img src="img/palestrante-daniel-benvenutti.webp" alt="" width="44" height="44" loading="lazy">Dr. Daniel Benvenutti</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">09</span>
+          <p class="talk-t">IRDRs e os Grandes Litigantes</p>
+          <span class="talk-by"><img src="img/palestrante-almir-anselmo.webp" alt="" width="44" height="44" loading="lazy">Dr. Almir Anselmo</span>
+        </li>
+        <li class="talk talk-panel">
+          <span class="talk-n">10</span>
+          <p class="talk-t"><span class="talk-tag">Mesa redonda</span>Superendividamento do Consumidor como Problema de Saúde Pública: Impactos na Saúde Mental, na Dignidade Humana e os Desafios do Sistema de Justiça</p>
+          <span class="talk-by"><span class="talk-faces"><img src="img/palestrante-rosely-fernandes.webp" alt="" width="44" height="44" loading="lazy"><img src="img/palestrante-roberta-veras.webp" alt="" width="44" height="44" loading="lazy"><img src="img/palestrante-roberta-marques.webp" alt="" width="44" height="44" loading="lazy"></span>Dras. Rosely Fernandes, Roberta Veras e Roberta Marques</span>
         </li>
       </ol>
     </div>
