@@ -152,6 +152,10 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
 .soon .eyebrow{color:var(--gold-l)}
 .soon p{margin-top:12px;max-width:52ch;color:rgba(255,255,255,.75)}
 .soon h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+.countdown{display:flex;gap:clamp(14px,3vw,36px);margin-top:14px}
+.countdown div{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l)}
+.countdown strong{display:block;min-width:2ch;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:#fff}
+.soon-meta{font-size:.9rem}
 
 /* palestrantes */
 /* subgrid: foto, nome, cargo e bio de cada card ficam nas mesmas linhas da grade, alinhados entre si */
@@ -544,6 +548,22 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <p>Advogada, doutora em Direito Constitucional e pós-graduada em Processo Civil e Civil pela FGV. Consultora em Relações de Consumo, Políticas Públicas, Mediação de Conflitos, Regulação e Estratégia Corporativa.</p>
         </div>
       </article>
+      <article class="speaker">
+        <img src="img/palestrante-omara-gusmao.webp" alt="Omara Oliveira de Gusmão" width="720" height="965" loading="lazy">
+        <div class="speaker-body">
+          <h3>Omara Oliveira de Gusmão</h3>
+          <span class="speaker-role">Secretária-Geral da OAB/AM</span>
+          <p>Advogada tributarista, sócia fundadora do Gusmão &amp; Stefano Advocacia e mestre em Direito pela UFPE. Procuradora da Fazenda Nacional aposentada, professora do IBET e presidente em exercício da Comissão da Mulher Advogada da OAB/AM.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <img src="img/palestrante-flavio-pascarelli.webp" alt="Flávio Pascarelli" width="720" height="1082" loading="lazy">
+        <div class="speaker-body">
+          <h3>Flávio Pascarelli</h3>
+          <span class="speaker-role">Desembargador do TJAM · Diretor da Esmam</span>
+          <p>Mestre em Direito pela UFPE, doutor pela Unifor e pós-doutor pela Università del Salento, na Itália. Pesquisa pós-doutorado na Universidade de Lisboa e é professor visitante de Direito Ambiental na UEA.</p>
+        </div>
+      </article>
     </div>
     <div class="talks">
       <h3 class="eyebrow">Palestras</h3>
@@ -598,13 +618,28 @@ h3{font-size:1.125rem;letter-spacing:-.01em}
           <p class="talk-t"><span class="talk-tag">Mesa redonda</span>Superendividamento do Consumidor como Problema de Saúde Pública: Impactos na Saúde Mental, na Dignidade Humana e os Desafios do Sistema de Justiça</p>
           <span class="talk-by"><span class="talk-faces"><img src="img/palestrante-rosely-fernandes.webp" alt="" width="44" height="44" loading="lazy"><img src="img/palestrante-roberta-veras.webp" alt="" width="44" height="44" loading="lazy"><img src="img/palestrante-roberta-marques.webp" alt="" width="44" height="44" loading="lazy"></span>Dras. Rosely Fernandes, Roberta Veras e Roberta Marques</span>
         </li>
+        <li class="talk">
+          <span class="talk-n">11</span>
+          <p class="talk-t">Responsabilidade Tributária na Advocacia: Regimes de Tributação, Planejamento Fiscal e Riscos da Gestão Contábil Inadequada</p>
+          <span class="talk-by"><img src="img/palestrante-omara-gusmao.webp" alt="" width="44" height="44" loading="lazy">Omara Gusmão</span>
+        </li>
+        <li class="talk">
+          <span class="talk-n">12</span>
+          <p class="talk-t"><span class="talk-tag">Palestra de encerramento</span>Entre o Acesso e o Abuso: A Advocacia de Massa diante do Sistema de Justiça Brasileiro</p>
+          <span class="talk-by"><img src="img/palestrante-flavio-pascarelli.webp" alt="" width="44" height="44" loading="lazy">Flávio Pascarelli</span>
+        </li>
       </ol>
     </div>
     <div class="soon">
       <div>
-        <span class="eyebrow">Grade completa</span>
-        <h3>Horários em breve</h3>
-        <p>A grade com o horário de cada palestra será divulgada aqui. Reserve a data: 12 de novembro, das 9h às 20h, no Auditório Rubi.</p>
+        <span class="eyebrow">Faltam para o congresso</span>
+        <div class="countdown" data-to="2026-11-12T09:00:00-04:00">
+          <div><strong data-u>00</strong>dias</div>
+          <div><strong data-u>00</strong>horas</div>
+          <div><strong data-u>00</strong>min</div>
+          <div><strong data-u>00</strong>seg</div>
+        </div>
+        <p class="soon-meta">12/11 · 9h às 20h · Auditório Rubi, OAB/AM</p>
       </div>
       <a class="btn btn-light shine" href="#inscricao">Garantir minha vaga</a>
     </div>
@@ -745,7 +780,7 @@ mapBtn.addEventListener('click', () => {
 // revelação cinematográfica ao rolar: cada bloco entra quando aparece na tela, em cascata entre irmãos
 const reveal = [
   ['rv-title', 'main h2'],
-  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .soon p, .facts-row, .stats > div, .step, .speaker, .talk, .ticket, .buy-note, .foot-grid > div'],
+  ['rv-up', '.eyebrow, .sec-head p, .about-txt > p, .orgs, .local-txt p, .countdown, .soon-meta, .facts-row, .stats > div, .step, .speaker, .talk, .ticket, .buy-note, .foot-grid > div'],
   ['rv-clip', '.local figure'],
   ['rv-wipe', '.solid'],
 ];
@@ -760,6 +795,16 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
     setTimeout(() => io.observe(el), 1400); // o que já está na tela entra depois da abertura do hero
   });
 }
+
+// contagem regressiva até a abertura do congresso (12/11, 9h em Manaus)
+const cd = document.querySelector('.countdown');
+const cdUnits = cd.querySelectorAll('[data-u]');
+const tick = () => {
+  const s = Math.max(0, Math.floor((new Date(cd.dataset.to) - Date.now()) / 1000));
+  [s / 86400, s / 3600 % 24, s / 60 % 60, s % 60].forEach((v, i) => { cdUnits[i].textContent = String(Math.floor(v)).padStart(2, '0'); });
+};
+tick();
+setInterval(tick, 1000);
 
 // setas do carrossel "Como se inscrever" (somem quando tudo cabe na tela)
 const track = document.getElementById('steps');
